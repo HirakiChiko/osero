@@ -71,6 +71,23 @@ function click_event() {
     };  
 }
 
+var now_board = [];
+var old_board = [];
+async function update(){
+    const url = './get_board';
+    const options = { methot: 'GET' };
+    const response = await fetch(url, options);
+    const data = await response.json();
+    now_board = data.board
+
+    if (JSON.stringify(now_board) !== JSON.stringify(old_board)){
+        console.log(now_board);
+        console.log(old_board);
+        put();
+        old_board = JSON.parse(JSON.stringify(now_board));
+    }
+}
+
 
 async function put(){
     clear()

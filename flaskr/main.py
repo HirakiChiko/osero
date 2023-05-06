@@ -1,7 +1,9 @@
-from flaskr import app
-from flask import render_template,request,redirect,url_for,jsonify
-from flaskr import osero_main
+from flask import render_template,request,redirect,url_for,jsonify,Flask
+import osero_main
 import json
+
+port = 80
+app = Flask(__name__)
 
 osero = osero_main.Osero()
 
@@ -39,3 +41,6 @@ def register():
         dict = {"answer": message}     
     return json.dumps(dict)  
 
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=port)
